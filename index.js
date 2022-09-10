@@ -13,7 +13,7 @@ function computeSumOfAllElements(array) {
 
 
 
-
+// Current Values
 
 var result1 = computeSumOfAllElements([1, 2, 3]);
 console.log('should log 6:', result1);
