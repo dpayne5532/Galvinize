@@ -1,24 +1,100 @@
-var array1 = [1, 2, 3];
-var array2 = ['a', 'b', 'c'];
-var array3 = ['do', 're', 'mi'];
+var currentInventory = [
+  {
+    name: 'Brunello Cucinelli',
+    shoes: [
+      {name: 'tasselled black low-top lace-up', price: 1000},
+      {name: 'tasselled green low-top lace-up', price: 1100},
+      {name: 'plain beige suede moccasin', price: 950},
+      {name: 'plain olive suede moccasin', price: 1050}
+    ]
+  },
+  {
+    name: 'Gucci',
+    shoes: [
+      {name: 'red leather laced sneakers', price: 800},
+      {name: 'black leather laced sneakers', price: 900}
+    ]
+  }
+];
 
-var resultOfConcat1 = array1.concat(array2);
-console.log('concatting array1 and array2 together:', resultOfConcat1);
-console.log('-------------------------\n');
-console.log('array1 is unaffected:', array1);
-console.log('array2 is unaffected:', array2);
 
-console.log('-------------------------\n');
 
-var resultOfConcat2 = resultOfConcat1.concat(array3);
-console.log('concatting array3 into our previous result:', resultOfConcat2);
-console.log('-------------------------\n');
-console.log('array1 is unaffected:', array1);
-console.log('array2 is unaffected:', array2);
-console.log('array3 is unaffected:', array3);
-console.log('resultOfConcat1 is unaffected:', resultOfConcat1);
+function generateLaceDetails(inventory) {
+  var laceDetails = [];
 
-console.log('-------------------------\n');
+  for (var i = 0; i < inventory.length; i++) {
+    var designerObject = inventory[i];
+    var shoes = designerObject.shoes;
 
-var resultOfConcat3 = array1.concat(array2, array3);
-console.log('concatting multiple arrays:', resultOfConcat3);
+    for (var j = 0; j < shoes.length; j++) {
+
+      if (shoeContainsLace(shoes[j])) {
+        laceDetails.name += shoes[j].name;
+        
+        console.log(shoes[j])
+      }
+      
+    }
+    
+  }
+
+  console.log(laceDetails)
+  return laceDetails;
+}
+
+function shoeContainsLace(shoe) {
+  var nameOfShoe = shoe.name;
+  if (nameOfShoe.indexOf('lace') !== -1) {
+    
+    return true;
+  } else {
+    
+    return false;
+
+  }
+}
+
+
+generateLaceDetails(currentInventory)
+
+var expectedResult = [
+  {
+    "nameWords": [
+      "tasselled",
+      "black",
+      "low-top",
+      "lace-up"
+    ],
+    "targetWordIndex": 3
+  },
+  {
+    "nameWords": [
+      "tasselled",
+      "green",
+      "low-top",
+      "lace-up"
+    ],
+    "targetWordIndex": 3
+  },
+  {
+    "nameWords": [
+      "red",
+      "leather",
+      "laced",
+      "sneakers"
+    ],
+    "targetWordIndex": 2
+  },
+  {
+    "nameWords": [
+      "black",
+      "leather",
+      "laced",
+      "sneakers"
+    ],
+    "targetWordIndex": 2
+  }
+];
+
+
+
