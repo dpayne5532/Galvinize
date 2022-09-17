@@ -31,7 +31,7 @@ function generateLaceDetails(inventory) {
       if (shoeContainsLace(shoes[j])) {
         laceDetails.name += shoes[j].name;
         
-        console.log(shoes[j])
+        console.log(shoes[j].price)
       }
       
     }
