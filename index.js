@@ -1,100 +1,60 @@
-var currentInventory = [
-  {
-    name: 'Brunello Cucinelli',
-    shoes: [
-      {name: 'tasselled black low-top lace-up', price: 1000},
-      {name: 'tasselled green low-top lace-up', price: 1100},
-      {name: 'plain beige suede moccasin', price: 950},
-      {name: 'plain olive suede moccasin', price: 1050}
-    ]
-  },
-  {
-    name: 'Gucci',
-    shoes: [
-      {name: 'red leather laced sneakers', price: 800},
-      {name: 'black leather laced sneakers', price: 900}
-    ]
-  }
-];
+var homeTeam = 0;
+var awayTeam = 0;
+var homeServe = true;
+var serverOne = true;
 
 
-
-function generateLaceDetails(inventory) {
-  var laceDetails = [];
-
-  for (var i = 0; i < inventory.length; i++) {
-    var designerObject = inventory[i];
-    var shoes = designerObject.shoes;
-
-    for (var j = 0; j < shoes.length; j++) {
-
-      if (shoeContainsLace(shoes[j])) {
-        laceDetails.name += shoes[j].name;
-        
-        console.log(shoes[j].price)
-      }
-      
-    }
-    
-  }
-
-  console.log(laceDetails)
-  return laceDetails;
-}
-
-function shoeContainsLace(shoe) {
-  var nameOfShoe = shoe.name;
-  if (nameOfShoe.indexOf('lace') !== -1) {
-    
-    return true;
-  } else {
-    
-    return false;
-
+function homeScore() {
+  if (homeServe === true) {
+    homeTeam += 1;
+    didHomeWin();
+  } else if (serverOne === false) {
+    homeServe = true;
+    serverOne = true;
+  } else if (homeServe === false && serverOne === true) {
+    serverOne = false;
   }
 }
 
-
-generateLaceDetails(currentInventory)
-
-var expectedResult = [
-  {
-    "nameWords": [
-      "tasselled",
-      "black",
-      "low-top",
-      "lace-up"
-    ],
-    "targetWordIndex": 3
-  },
-  {
-    "nameWords": [
-      "tasselled",
-      "green",
-      "low-top",
-      "lace-up"
-    ],
-    "targetWordIndex": 3
-  },
-  {
-    "nameWords": [
-      "red",
-      "leather",
-      "laced",
-      "sneakers"
-    ],
-    "targetWordIndex": 2
-  },
-  {
-    "nameWords": [
-      "black",
-      "leather",
-      "laced",
-      "sneakers"
-    ],
-    "targetWordIndex": 2
+function awayScore() {
+  if (homeServe !== true) {
+    awayTeam += 1;
+    didAwayWin();
+  } else if (serverOne === false) {
+    homeServe = false;
+    serverOne = true;
+  } else if (homeServe === true && serverOne === true) {
+    serverOne = false;
   }
-];
+}
 
+var thirdNum = serverOne ? '1' : '2';
+
+function didHomeWin() {
+  if (homeTeam >= 11 && awayTeam <= (homeTeam - 2)) {
+    console.log('HOME TEAM WINS!!')
+    
+  }
+  
+}
+
+function didAwayWin() {
+  if (awayTeam >= 11 && homeTeam <= (awayTeam - 2)) {
+    console.log('AWAY TEAM WINS!!')
+    
+  }
+  
+}
+
+
+console.log(homeTeam, awayTeam, thirdNum);
+
+
+awayScore()
+
+console.log(homeTeam, awayTeam, serverOne ? 1 : 2);
+
+awayScore()
+console.log(homeTeam, awayTeam, serverOne ? 1 : 2);
 
 
